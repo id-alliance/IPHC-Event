@@ -82,5 +82,39 @@
         </ul>
         <a href="https://www.id-alliance.org/event-details/wha78-side-event-health-without-borders-integrated-primary-healthcare-for-all" class="button">Register Here</a>
     </div>
+    <script>
+      window.addEventListener('DOMContentLoaded', function () {
+        // Optional delay (1 second)
+        setTimeout(function () {
+          if (confirm("Would you like to copy the entire page content (with formatting and images) to your clipboard?\nYou can then paste it directly into your email.")) {
+
+            // --- SELECT THE ENTIRE BODY ELEMENT ---
+            const elementToCopy = document.body; // Directly use document.body
+
+            // Get the HTML content *inside* the body
+            const htmlContent = elementToCopy.innerHTML;
+
+            // --- PREPARE DATA FOR MODERN CLIPBOARD API ---
+            try {
+              const blob = new Blob([htmlContent], { type: 'text/html' });
+              const clipboardItem = new ClipboardItem({ 'text/html': blob });
+
+              // --- WRITE TO CLIPBOARD ---
+              navigator.clipboard.write([clipboardItem]).then(function() {
+                // Success feedback
+                alert("Entire page content copied with formatting! You can now paste it into your email.");
+              }).catch(function(err) {
+                // Error feedback
+                console.error('Failed to copy HTML to clipboard: ', err);
+                alert("Sorry, couldn't automatically copy the page content with formatting. You might need to manually select everything (Ctrl+A or Cmd+A) and copy (Ctrl+C or Cmd+C).");
+              });
+            } catch (error) {
+               console.error('Error preparing content for clipboard: ', error);
+               alert("Sorry, your browser might not support copying rich content this way. Please manually select everything (Ctrl+A or Cmd+A) and copy (Ctrl+C or Cmd+C).");
+            }
+          }
+        }, 1000); // End of setTimeout
+      }); // End of DOMContentLoaded listener
+    </script>
 </body>
 </html>
